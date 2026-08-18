@@ -1,0 +1,35 @@
+<section class="sec alt" id="uniform">
+      <div class="shead rv">
+        <div><p class="eyebrow">Chart 02 · Geometry</p><h3 class="disp">Coverage uniformity</h3></div>
+        <p>Twelve overlapping fans summed across the width. The defaults are the real numbers measured from the assembly — 181.8&nbsp;mm pitch, 245&nbsp;mm standoff. Change either and watch the coat go striped.</p>
+      </div>
+      <div class="chartwrap rv">
+        <div class="ct">
+          <h4>Deposition profile across the web</h4>
+          <span class="sp"></span>
+          <div class="seg" id="segFans">
+            <button aria-pressed="true" data-v="on">Individual fans</button>
+            <button aria-pressed="false" data-v="off">Sum only</button>
+          </div>
+          <div class="seg" id="segAs">
+            <button aria-pressed="true" data-v="on">As built</button>
+            <button aria-pressed="false" data-v="off">Free</button>
+          </div>
+        </div>
+        <div class="cv"><canvas id="cvUni"></canvas></div>
+        <div class="ctrls">
+          <div class="ctrl"><label>Spray angle</label><input type="range" id="uAng" min="20" max="110" value="65"><b id="uAngV">65°</b></div>
+          <div class="ctrl"><label>Standoff</label><input type="range" id="uStand" min="80" max="400" value="245"><b id="uStandV">245 mm</b></div>
+          <div class="ctrl"><label>Pitch</label><input type="range" id="uPitch" min="90" max="300" value="182"><b id="uPitchV">181.8 mm</b></div>
+          <div class="ctrl"><label>Bank stagger</label><input type="range" id="uStag" min="0" max="100" value="0"><b id="uStagV">0%</b></div>
+        </div>
+        <div class="readval">
+          <div><span>Uniformity CV</span><b id="rvCv">—</b></div>
+          <div><span>Peak-to-valley</span><b id="rvPv">—</b></div>
+          <div><span>Overlap factor</span><b id="rvOv">—</b></div>
+          <div><span>Fan width at cloth</span><b id="rvFan">—</b></div>
+          <div><span>Edge overspray</span><b id="rvEdge">—</b></div>
+          <div><span>Verdict</span><b id="rvVerd">—</b></div>
+        </div>
+      </div>
+    </section>

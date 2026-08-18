@@ -1,0 +1,189 @@
+---
+const machineImages = [
+  {
+    src: '/assets/image/machine1.png',
+    kicker: 'FULL MACHINE',
+    title: 'Complete machine arrangement',
+    desc: 'Overall machine view showing the complete fabric handling and spray finishing arrangement.',
+    alt: 'Full spraying machine view',
+  },
+  {
+    src: '/assets/image/machine2.png',
+    kicker: 'FABRIC PATH',
+    title: 'Fabric transport and roller section',
+    desc: 'A closer machine view focused on the web path, guide rollers and fabric movement through the finishing line.',
+    alt: 'Fabric transport and roller section',
+  },
+  {
+    src: '/assets/image/machine3.png',
+    kicker: 'PROCESS MODULE',
+    title: 'Spray processing machine',
+    desc: 'Detailed machine view highlighting the enclosed process module, supporting structure and operator-side equipment.',
+    alt: 'Spray processing machine',
+  },
+];
+
+const sprayImages = [
+  {
+    src: '/assets/image/spray1.png',
+    kicker: 'SPRAY ARRAY',
+    title: 'Dual-face spray arrangement',
+    desc: 'Spray-system view showing the nozzle bank arrangement used to apply chemistry across the moving fabric.',
+    alt: 'Dual-face spray system view',
+  },
+  {
+    src: '/assets/image/spray2.png',
+    kicker: 'NOZZLE BANK',
+    title: 'Nozzle and manifold detail',
+    desc: 'Close-up of the spray hardware, manifold and nozzle positions used for controlled digital application.',
+    alt: 'Nozzle and manifold detail',
+  },
+  {
+    src: '/assets/image/spray3.png',
+    kicker: 'SPRAY ACTION',
+    title: 'Spray application on fabric',
+    desc: 'Application view showing the spray interaction with the fabric and the finishing zone around the nozzle array.',
+    alt: 'Spray application on fabric',
+  },
+];
+---
+
+<section class="sec alt" id="array">
+  <div class="shead rv">
+    <div>
+      <p class="eyebrow">
+        <svg class="wv" viewBox="0 0 40 16" width="18" height="8" aria-hidden="true">
+          <path d="M0 12 H6 V4 H14 V12 H20 V4 H28 V12 H34 V4 H40" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round" />
+        </svg>
+        The nozzle array
+      </p>
+      <h3 class="disp">12 a side.<br />24 addressed on their own.</h3>
+    </div>
+    <p>
+      Two bars facing each other across the web, each carrying twelve nozzles at
+      181.8&nbsp;mm pitch. Turn a bank off and only one face gets finished.
+    </p>
+  </div>
+
+  <div class="array-controlbar rv" aria-label="Nozzle array controls">
+    <div class="array-control-group array-power-toggle" role="group" aria-label="Spray power">
+      <span class="array-control-label">Spray</span>
+      <button type="button" data-power="on" class="active" aria-pressed="true">ON</button>
+      <button type="button" data-power="off" aria-pressed="false">OFF</button>
+    </div>
+
+    <div class="array-control-group array-toggle" role="group" aria-label="Spray face selection">
+      <span class="array-control-label">Faces</span>
+      <button type="button" data-mode="dual" class="active" aria-pressed="true">Both faces</button>
+      <button type="button" data-mode="single" aria-pressed="false">One face</button>
+    </div>
+
+    <div class="array-live-state" aria-live="polite">
+      <i></i>
+      <span id="arrayState">24 NOZZLES ACTIVE</span>
+    </div>
+  </div>
+
+  <div class="array-wrap rv">
+    <svg id="nozzleSvg" viewBox="0 0 1000 320" xmlns="http://www.w3.org/2000/svg" aria-label="Diagram of the 24-nozzle spray array"></svg>
+    <div class="array-tooltip" id="arrayTip"></div>
+  </div>
+
+  <p class="array-mode-desc rv" id="arrayModeDesc">
+    Spray ON · Both faces — all 24 nozzles fire together continuously while the fabric moves through the centre.
+  </p>
+
+  <!-- =========================================================
+       CLEAN IMAGE CAROUSELS
+       No thumbnail strip. No visible card chrome.
+       Images expected in public/assets/image/
+  ========================================================== -->
+  <div class="array-image-showcase rv">
+    <article class="image-gallery-card machine-gallery" data-image-gallery="machine">
+      <script type="application/json" data-gallery-data set:html={JSON.stringify(machineImages)}></script>
+
+      <header class="image-gallery-head">
+        <div>
+          <span class="image-gallery-index">01 / MACHINE</span>
+          <h4>Machine views</h4>
+        </div>
+        <span class="image-gallery-counter" data-gallery-counter>01 / 03</span>
+      </header>
+
+      <div class="image-gallery-stage" data-gallery-stage>
+        <button class="image-gallery-open" type="button" data-gallery-open aria-label="View selected machine image larger">
+          <img
+            data-gallery-main
+            src={machineImages[0].src}
+            alt={machineImages[0].alt}
+            loading="lazy"
+          />
+          <span class="image-gallery-expand">VIEW IMAGE ↗</span>
+        </button>
+
+        <button class="image-gallery-nav image-gallery-prev" type="button" data-gallery-prev aria-label="Previous machine image">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 7 12l8 8" /></svg>
+        </button>
+
+        <button class="image-gallery-nav image-gallery-next" type="button" data-gallery-next aria-label="Next machine image">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4 8 8-8 8" /></svg>
+        </button>
+      </div>
+
+      <div class="image-gallery-copy">
+        <span data-gallery-kicker>{machineImages[0].kicker}</span>
+        <h5 data-gallery-title>{machineImages[0].title}</h5>
+        <p data-gallery-desc>{machineImages[0].desc}</p>
+      </div>
+    </article>
+
+    <article class="image-gallery-card spray-gallery" data-image-gallery="spray">
+      <script type="application/json" data-gallery-data set:html={JSON.stringify(sprayImages)}></script>
+
+      <header class="image-gallery-head">
+        <div>
+          <span class="image-gallery-index">02 / SPRAY SYSTEM</span>
+          <h4>Spray views</h4>
+        </div>
+        <span class="image-gallery-counter" data-gallery-counter>01 / 03</span>
+      </header>
+
+      <div class="image-gallery-stage" data-gallery-stage>
+        <button class="image-gallery-open" type="button" data-gallery-open aria-label="View selected spray image larger">
+          <img
+            data-gallery-main
+            src={sprayImages[0].src}
+            alt={sprayImages[0].alt}
+            loading="lazy"
+          />
+          <span class="image-gallery-expand">VIEW IMAGE ↗</span>
+        </button>
+
+        <button class="image-gallery-nav image-gallery-prev" type="button" data-gallery-prev aria-label="Previous spray image">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 7 12l8 8" /></svg>
+        </button>
+
+        <button class="image-gallery-nav image-gallery-next" type="button" data-gallery-next aria-label="Next spray image">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4 8 8-8 8" /></svg>
+        </button>
+      </div>
+
+      <div class="image-gallery-copy">
+        <span data-gallery-kicker>{sprayImages[0].kicker}</span>
+        <h5 data-gallery-title>{sprayImages[0].title}</h5>
+        <p data-gallery-desc>{sprayImages[0].desc}</p>
+      </div>
+    </article>
+  </div>
+
+  <div class="array-image-lightbox" id="arrayImageLightbox" aria-hidden="true">
+    <button class="array-image-lightbox-close" type="button" aria-label="Close image viewer">×</button>
+    <div class="array-image-lightbox-inner">
+      <img id="arrayImageLightboxImg" src="" alt="" />
+      <div class="array-image-lightbox-caption">
+        <span id="arrayImageLightboxKicker"></span>
+        <strong id="arrayImageLightboxTitle"></strong>
+      </div>
+    </div>
+  </div>
+</section>

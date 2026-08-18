@@ -1,0 +1,38 @@
+<section class="sec" id="how">
+      <div class="shead rv">
+        <div>
+          <p class="eyebrow"><svg class="wv" viewBox="0 0 40 16" width="18" height="8"><path d="M0 12 H6 V4 H14 V12 H20 V4 H28 V12 H34 V4 H40" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/></svg>How it sprays</p>
+          <h3 class="disp">Twenty-four valves,<br>switching in sync.</h3>
+        </div>
+        <p>Every nozzle runs off its own solenoid — not a single shared line held open. Drag the controls to see why the timing matters.</p>
+      </div>
+
+      <div class="scope-panel rv">
+        <div class="scope-canvas-wrap">
+          <canvas id="scope" width="640" height="230"></canvas>
+          <div class="coverage-row">
+            <span>Coverage, illustrative</span>
+            <div class="coverage-bar"><div class="coverage-fill" id="coverageFill"></div></div>
+          </div>
+        </div>
+        <div class="scope-controls">
+          <label>Switching frequency <span id="freqOut">50 Hz</span>
+            <input type="range" id="freqSlider" min="10" max="80" step="1" value="50">
+          </label>
+          <label>Duty cycle <span id="dutyOut">10%</span>
+            <input type="range" id="dutySlider" min="5" max="100" step="1" value="10">
+          </label>
+          <div class="scope-readout">
+            <div>Cycle time<b id="rCycle">20.0 ms</b></div>
+            <div>Pulse on-time<b id="rOn">2.0 ms</b></div>
+            <div>Pulses / sec<b id="rPulses">50</b></div>
+            <div>Nozzle state<b id="rState">ON</b></div>
+          </div>
+          <button class="btn-ghost" id="resetScope">Reset to spec — 50&nbsp;Hz / 10%</button>
+        </div>
+      </div>
+      <p class="scope-caption rv">Illustrative model of the switching behaviour, for explanation — production timing is tuned per chemistry, line speed and fabric.</p>
+
+      <p class="how-explain rv">At <strong>50&nbsp;Hz</strong>, each valve opens and closes fifty times a second — open for roughly a tenth of every cycle, closed for the rest. That's fast enough that the fabric never sees the gap: what reads as one steady mist is really thousands of individually timed micro-doses a minute, replayed too quickly to tell apart. It's the same trick as a dimmed LED — switch fast enough and the flicker disappears. Slow the switching down and you can watch it fall apart into drips and dry patches — try dragging the frequency slider to 15&nbsp;Hz.</p>
+      <p class="how-explain rv" style="margin-top:1rem">Frequency stays put; <strong>duty cycle is what the controller moves</strong>. Across the working speed range it runs from about <strong>6%</strong> at a crawl to <strong>50%</strong> flat out, holding grams per square metre constant the whole way. That relationship is plotted further down.</p>
+    </section>

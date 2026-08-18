@@ -1,0 +1,31 @@
+<section class="sec" id="dose">
+      <div class="shead rv">
+        <div><p class="eyebrow">Chart 01 · Metering</p><h3 class="disp">Add-on control</h3></div>
+        <p>Pressure sets droplet size; duty cycle sets volume. To hold grams per square metre while the stenter speeds up, the controller opens the nozzles for a larger fraction of each cycle. Drag across to scrub.</p>
+      </div>
+      <div class="chartwrap rv">
+        <div class="ct">
+          <h4>Duty cycle required vs line speed</h4>
+          <span class="sp"></span>
+          <div class="seg" id="segPwm">
+            <button aria-pressed="true" data-v="on">Show PWM trace</button>
+            <button aria-pressed="false" data-v="off">Hide</button>
+          </div>
+        </div>
+        <div class="cv"><canvas id="cvDose"></canvas></div>
+        <div class="ctrls">
+          <div class="ctrl"><label>Target add-on</label><input type="range" id="dAdd" min="10" max="120" value="30"><b id="dAddV">30 g/m²</b></div>
+          <div class="ctrl"><label>Line pressure</label><input type="range" id="dPr" min="10" max="45" value="25"><b id="dPrV">2.5 bar</b></div>
+          <div class="ctrl"><label>Nozzles on</label><input type="range" id="dNoz" min="8" max="24" step="2" value="24"><b id="dNozV">24</b></div>
+          <div class="ctrl"><label>Width</label><input type="range" id="dW" min="1000" max="2000" step="50" value="2000"><b id="dWV">2 000 mm</b></div>
+        </div>
+        <div class="readval">
+          <div><span>At cursor</span><b id="rvSpd">40<u>m/min</u></b></div>
+          <div><span>Duty cycle</span><b id="rvDuty">—</b></div>
+          <div><span>Total flow</span><b id="rvFlow">—</b></div>
+          <div><span>Per nozzle</span><b id="rvPerNoz">—</b></div>
+          <div><span>Max speed held</span><b id="rvMax">—</b></div>
+          <div><span>Droplet VMD</span><b id="rvVmd">—</b></div>
+        </div>
+      </div>
+    </section>

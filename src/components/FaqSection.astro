@@ -1,0 +1,13 @@
+<section class="sec" id="faqsec">
+      <div class="shead rv">
+        <div><p class="eyebrow">Notes</p><h3 class="disp">How this page works</h3></div>
+        <p>Worth reading before you put it in front of a customer.</p>
+      </div>
+      <div class="faq rv">
+        <details open><summary><i>01</i>Why does it need a local server?</summary><p>Browsers won't let a page opened from your hard drive read other files sitting beside it — the same rule that stops a downloaded page rifling through your documents. The models are separate files, so they trip it. Running <b>python3 -m http.server 8000</b> in the folder turns it into a proper site on your own machine and the restriction lifts. The drag-and-drop panel is the fallback when you can't.</p></details>
+        <details><summary><i>02</i>What is measured and what is modelled?</summary><p>Everything geometric is measured: 24 nozzles, 181.8 mm pitch, 667 mm between banks, 245 mm standoff, 2 000 mm web, the vertical fabric pass, 16 Festo ADNGF-32-80 cylinders, the DAPS actuators and the Keyence sensor are all read out of your assembly. The performance figures are modelled — duty cycle, flow, droplet size, CV% and the savings comparison come from standard spray and drying relationships, sized to this machine's geometry. They behave correctly and the numbers are defensible, but they are not measurements from a running line. Replace them with trial data before quoting.</p></details>
+        <details><summary><i>03</i>The array diagram is a plan view</summary><p>On this machine the web runs vertically and the two banks sit either side of it, 667 mm apart. The array diagram is therefore drawn looking <i>down</i> on the machine: the horizontal axis is the 2 000 mm working width, the two bars are the two banks, and the fabric travels out of the page. That is the same layout your earlier page used — it just wasn't labelled as a plan view.</p></details>
+        <details><summary><i>04</i>Why highlight in colour instead of hiding things?</summary><p>Hiding a component loses the context of where it sits. Dropping everything else to about 20% and tinting the subject keeps the whole machine visible while making one thing unmistakable. The same mechanism serves two jobs — scrolling drives it automatically, and clicking any part drives it manually.</p></details>
+        <details><summary><i>05</i>Why is it slow to load?</summary><p>133 MB across three files, 2.95 million triangles, nothing decimated. The 24 nozzles alone are 419 000 triangles and three M16 bolt patterns another 171 000 — turn the Fasteners button off to drop those. For anything customer-facing, run the files through Draco or meshopt; this assembly compresses to roughly a tenth.</p></details>
+      </div>
+    </section>

@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Background from '../components/Background.astro';
+import Loader from '../components/Loader.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import ThreeStage from '../components/ThreeStage.astro';
+import PartExplorerDrawer from '../components/PartExplorerDrawer.astro';
+import LineMonitor from '../components/LineMonitor.astro';
+import Toast from '../components/Toast.astro';
+import HeroSection from '../components/HeroSection.astro';
+import CinematicChapters from '../components/CinematicChapters.astro';
+import HowItSprays from '../components/HowItSprays.astro';
+import NozzleArray from '../components/NozzleArray.astro';
+import MeteringSection from '../components/MeteringSection.astro';
+import UniformitySection from '../components/UniformitySection.astro';
+import ProcessFlowSection from '../components/ProcessFlowSection.astro';
+import MillCaseSection from '../components/MillCaseSection.astro';
+import ApplicationsSection from '../components/ApplicationsSection.astro';
+import SpecificationsSection from '../components/SpecificationsSection.astro';
+import FaqSection from '../components/FaqSection.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+---
+
+<BaseLayout>
+  <Background />
+  <Loader />
+  <SiteHeader />
+  <ThreeStage />
+  <PartExplorerDrawer />
+  <LineMonitor />
+  <Toast />
+
+  <main>
+    <HeroSection />
+    <CinematicChapters />
+
+    <div class="solid">
+      <HowItSprays />
+      <NozzleArray />
+      <MeteringSection />
+      <UniformitySection />
+      <ProcessFlowSection />
+      <MillCaseSection />
+      <ApplicationsSection />
+      <SpecificationsSection />
+      <FaqSection />
+      <SiteFooter />
+    </div>
+  </main>
+
+  <!-- Original Three.js revision/API retained so the supplied page behaves 1:1. -->
+  <script is:inline src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+  <script is:inline src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script is:inline src="/js/sprayed.js"></script>
+</BaseLayout>

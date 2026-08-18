@@ -1,0 +1,29 @@
+<div id="load">
+  <div class="load-in">
+    <div class="eyebrow"><svg class="wv" viewBox="0 0 40 16" width="18" height="8"><path d="M0 12 H6 V4 H14 V12 H20 V4 H28 V12 H34 V4 H40" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/></svg>RVR Machinery · Coimbatore</div>
+    <h1 class="disp">Ramdukes <em>DTFS</em></h1>
+    <div class="lbar"><i id="lbar"></i></div>
+    <div class="lrow"><span id="lmsg">CONNECTING</span><span id="lpct">0%</span></div>
+    <div class="lstat">
+      <div>MACHINE ASSEMBLY <b id="s1">—</b></div>
+      <div>SPRAY DUCT <b id="s2">—</b></div>
+      <div>NOZZLE <b id="s3">—</b></div>
+    </div>
+    <div class="lnote" id="lnote">133 MB of un-decimated CAD. First load takes a moment.</div>
+
+    <div id="fallback">
+      <h2>The browser is blocking the models</h2>
+      <p>Opening the file straight from disk means the browser won't let the page read the <b>.glb</b> files sitting next to it. Either fix works.</p>
+      <p style="color:var(--ink);font-size:13px"><b>A · Serve the folder</b> — best option. In Terminal:</p>
+      <code>npm install &amp;&amp; npm run dev</code>
+      <p style="margin-bottom:14px">Then open the local URL printed by Astro (normally <b style="color:var(--air)">http://localhost:4321</b>)</p>
+      <p style="color:var(--ink);font-size:13px"><b>B · Hand me the files</b> — drop all three here:</p>
+      <label class="drop" id="drop">
+        <input type="file" id="fin" accept=".glb,model/gltf-binary" multiple hidden>
+        <b>Drop the three .glb files</b>
+        <span>or click to choose them</span>
+      </label>
+      <div class="drop-state" id="dstate"></div>
+    </div>
+  </div>
+</div>

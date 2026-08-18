@@ -1,0 +1,34 @@
+<div id="stage">
+  <canvas id="gl"></canvas>
+  <div id="pins"></div>
+
+  <div class="readout" id="readout">
+    <button class="x" id="roClose" aria-label="Close">×</button>
+    <span class="gp" id="roGrp">—</span>
+    <h4 id="roName">—</h4>
+    <div class="es" id="roEs">—</div>
+    <dl>
+      <dt>Triangles</dt><dd id="roTri">—</dd>
+      <dt>Bounding</dt><dd id="roDim">—</dd>
+      <dt>In group</dt><dd id="roQty">—</dd>
+      <dt>Position</dt><dd id="roPos">—</dd>
+    </dl>
+  </div>
+
+  <div class="hud" id="hud">
+    <div class="hrow">
+      <button class="chip" id="bGhost" aria-pressed="true"><svg viewBox="0 0 24 24"><path d="M2 12s3.6-6 10-6 10 6 10 6-3.6 6-10 6-10-6-10-6Z"/><circle cx="12" cy="12" r="2.4"/></svg> Ghost<kbd>g</kbd></button>
+      <button class="chip" id="bExp" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M4 12h4M16 12h4M12 4v4M12 16v4"/></svg> Explode<kbd>e</kbd></button>
+      <div class="slid" id="expWrap" style="display:none"><label>Spread</label><input type="range" id="expS" min="0" max="100" value="55"><b id="expV">55%</b></div>
+      <button class="chip" id="bSpray" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M5 8h6l8-4v16l-8-4H5z"/></svg> Spray<kbd>s</kbd></button>
+    </div>
+    <div class="hrow">
+      <button class="chip" id="bCut" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M4 16 20 4M6 20h14"/></svg> Section<kbd>c</kbd></button>
+      <div class="slid" id="cutWrap" style="display:none"><label>Cut</label><input type="range" id="cutS" min="0" max="100" value="50"><b id="cutV">0 mm</b></div>
+      <button class="chip" id="bHeavy" aria-pressed="true"><svg viewBox="0 0 24 24"><path d="M5 6h14M7 10h10M5 14h14M7 18h10"/></svg> Fasteners</button>
+      <button class="chip" id="bWire" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M12 3 3 8v8l9 5 9-5V8l-9-5Z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg> Blueprint</button>
+      <button class="chip" id="bReset"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.5-5.8M20 4v4.4h-4.4"/></svg> Reset<kbd>r</kbd></button>
+    </div>
+    <div class="hint" id="hint">Drag to orbit · scroll runs the fabric · click any part to identify it</div>
+  </div>
+</div>
