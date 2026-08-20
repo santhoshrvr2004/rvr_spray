@@ -944,6 +944,7 @@ main .card {
 }
 .hero {
   min-height: 100svh;
+  margin-top: -20px;
   display: grid;
   align-items: center;
   padding: calc(var(--nav-h) + 5vh) var(--gut) 10vh;
@@ -983,7 +984,7 @@ main .card {
 .hero .kpi {
   display: flex;
   gap: 26px;
-  margin-top: 28px;
+  margin-top: 20px;
   flex-wrap: wrap;
 }
 .hero .kpi div {
@@ -1011,11 +1012,18 @@ main .card {
   margin-left: 3px;
   font-family: "IBM Plex Mono", monospace;
 }
-.hero .act {
+/* .hero .act {
   display: flex;
   gap: 10px;
   margin-top: 32px;
   flex-wrap: wrap;
+} */
+.hero .act {
+  display: flex;
+  gap: 10px;
+  margin-top: 0px;
+  flex-wrap: wrap;
+  margin-left: 330px;
 }
 .btn {
   display: inline-flex;

@@ -1213,7 +1213,7 @@ $$(".rv, .card").forEach(function (el) { io.observe(el); });
   var cv = $("#scope"); if (!cv) return;
   var cx = cv.getContext("2d");
   var freqS = $("#freqSlider"), dutyS = $("#dutySlider");
-  var freq = 50, duty = 10, cover = 0, parts = [], flashUntil = 0;
+  var freq = 50, duty = 25, cover = 0, parts = [], flashUntil = 0;
   var W = 0, H = 230, waveH, bayTop, fabricY;
   var dpr = Math.min(devicePixelRatio || 1, 2);
 
@@ -1233,7 +1233,7 @@ $$(".rv, .card").forEach(function (el) { io.observe(el); });
   freqS.addEventListener("input", function () { freq = +freqS.value; readouts(); });
   dutyS.addEventListener("input", function () { duty = +dutyS.value; readouts(); });
   $("#resetScope").addEventListener("click", function () {
-    freq = 50; duty = 10; freqS.value = 50; dutyS.value = 10; readouts();
+    freq = 50; duty = 25; freqS.value = 50; dutyS.value = 25; readouts();
   });
   addEventListener("resize", size);
 
