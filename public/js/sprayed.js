@@ -5,6 +5,29 @@
 (function () {
 "use strict";
 
+/* ------------------------------------------------------ refresh behaviour
+   On a browser refresh/reload, always restart the cinematic page at the top.
+   Normal in-page scrolling and normal navigation are left unchanged. */
+var NAV_ENTRY = (performance.getEntriesByType && performance.getEntriesByType("navigation")[0]) || null;
+var IS_PAGE_RELOAD = NAV_ENTRY
+  ? NAV_ENTRY.type === "reload"
+  : !!(performance.navigation && performance.navigation.type === 1);
+
+if (IS_PAGE_RELOAD) {
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+
+  var forceReloadTop = function () {
+    window.scrollTo(0, 0);
+  };
+
+  forceReloadTop();
+  addEventListener("pageshow", function () {
+    forceReloadTop();
+    requestAnimationFrame(forceReloadTop);
+    setTimeout(forceReloadTop, 0);
+  });
+}
+
 var RED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 var $ = function (s, r) { return (r || document).querySelector(s); };
 var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
@@ -70,19 +93,19 @@ var CH = [
 
   /* 2 · SAME SPRAY ASSEMBLY — four functional part-focus chapters */
   { id:"c-frame",  m:"m", v:18, t:[0.440, 0.543,-1.406], az:-44, el: -8, d:13, side:"r", exp:0, f:["FRAME"], pins:[] },
-  { id:"c-tank",   m:"m", v:22, t:[0.250, 0.360,-1.420], az:128, el:  8, d:10, side:"l", exp:0, f:["TANK"], pins:[] },
-  { id:"c-pump",   m:"m", v:26, t:[-0.150,0.050,-1.250], az:152, el:-16, d:9,  side:"r", exp:0, f:["PUMP","FEED"], pins:[] },
-  { id:"c-dose",   m:"m", v:30, t:[0.900, 0.240,-1.650], az:-62, el: 10, d:9,  side:"l", exp:0, f:["DOSE"], pins:[] },
+  // { id:"c-tank",   m:"m", v:22, t:[0.250, 0.360,-1.420], az:128, el:  8, d:10, side:"l", exp:0, f:["TANK"], pins:[] },
+  // { id:"c-pump",   m:"m", v:26, t:[-0.150,0.050,-1.250], az:152, el:-16, d:9,  side:"r", exp:0, f:["PUMP","FEED"], pins:[] },
+  // { id:"c-dose",   m:"m", v:30, t:[0.900, 0.240,-1.650], az:-62, el: 10, d:9,  side:"l", exp:0, f:["DOSE"], pins:[] },
 
   /* 3 · SPRAY DUCT SUBASSEMBLY */
-  { id:"c-elec",   m:"d", v:34, t:[0.999, 1.000, 0.237], az:-70, el: 10, d:13, side:"r", exp:0, f:null, pins:[] },
+  // { id:"c-elec",   m:"d", v:34, t:[0.999, 1.000, 0.237], az:-70, el: 10, d:13, side:"r", exp:0, f:null, pins:[] },
   { id:"c-duct",   m:"d", v:40, t:[0.999, 1.000, 0.237], az: 36, el: 18, d:15, side:"l", exp:0, f:null, pins:[
       { p:[1.361, 0.990, 1.100], t:"Bank A", e:"12 nozzles", u:"" },
       { p:[0.694, 0.990,-0.660], t:"Bank B", e:"mirrored", u:"667 mm apart", f:1 } ] },
-  { id:"c-pipe",   m:"d", v:44, t:[1.401, 0.953, 0.284], az: 22, el: 14, d:10, side:"r", exp:0, f:["DUCT"], pins:[
-      { p:[1.401, 0.953, 1.300], t:"Main pipe", e:"Spramy, 2 269 mm", u:"feeds 12" } ] },
-  { id:"c-sol",    m:"d", v:48, t:[1.366, 0.961, 0.237], az:-34, el: 16, d:9,  side:"l", exp:0, f:["DUCT"], pins:[
-      { p:[1.366, 1.020,-0.700], t:"Solenoid duct", e:"Ex2026, 2 400 mm", u:"one valve per nozzle" } ] },
+  // { id:"c-pipe",   m:"d", v:44, t:[1.401, 0.953, 0.284], az: 22, el: 14, d:10, side:"r", exp:0, f:["DUCT"], pins:[
+  //     { p:[1.401, 0.953, 1.300], t:"Main pipe", e:"Spramy, 2 269 mm", u:"feeds 12" } ] },
+  // { id:"c-sol",    m:"d", v:48, t:[1.366, 0.961, 0.237], az:-34, el: 16, d:9,  side:"l", exp:0, f:["DUCT"], pins:[
+      // { p:[1.366, 1.020,-0.700], t:"Solenoid duct", e:"Ex2026, 2 400 mm", u:"one valve per nozzle" } ] },
   { id:"c-noz",    m:"d", v:54, t:[1.027, 0.990, 0.147], az:  2, el:  6, d:7,  side:"r", exp:0, f:["NOZZLE"], pins:[
       { p:[1.361, 0.990, 0.147], t:"AA250AUH", e:"bank A", u:"pitch 181.8 mm" },
       { p:[0.694, 0.990, 0.510], t:"Facing bank", e:"245 mm standoff", u:"", f:1 } ] },
@@ -91,9 +114,9 @@ var CH = [
   { id:"c-nozzle", m:"n", v:58, t:[0.088, 0.000, 0.011], az: 34, el: 12, d:13, side:"l", exp:0, f:null, pins:[] },
 
   /* 5 · RETURN TO SPRAY ASSEMBLY */
-  { id:"c-tilt",   m:"m", v:62, t:[0.450, 0.820,-1.400], az: 72, el: 22, d:9,  side:"r", exp:0, f:["TILT"], pins:[] },
+  // { id:"c-tilt",   m:"m", v:62, t:[0.450, 0.820,-1.400], az: 72, el: 22, d:9,  side:"r", exp:0, f:["TILT"], pins:[] },
   { id:"c-rail",   m:"m", v:66, t:[0.440, 0.650,-1.420], az:-72, el: 32, d:11, side:"l", exp:0, f:["RAIL"], pins:[] },
-  { id:"c-exp",    m:"m", v:70, t:[0.440, 0.543,-1.406], az: 32, el: 20, d:24, side:"r", exp:1, f:null, pins:[] },
+  // { id:"c-exp",    m:"m", v:70, t:[0.440, 0.543,-1.406], az: 32, el: 20, d:24, side:"r", exp:1, f:null, pins:[] },
   { id:"c-full",   m:"m", v:80, t:[0.440, 0.543,-1.406], az: 26, el: 16, d:20, side:"l", exp:0, f:null, pins:[] }
 ];
 
@@ -370,12 +393,24 @@ function buildSpray(key) {
   var m = META[key];
   var noz = m.meshes.filter(function (o) { return o.userData.grp === "NOZZLE"; });
   if (!noz.length) return;
+
+  /* The duct GLB and the full spray-assembly GLB use different X origins.
+     Derive the centre plane from the actual nozzle banks in the active GLB.
+     This keeps BOTH banks spraying inward toward the fabric instead of letting
+     one bank spray outward on the full assembly (visible on chapters 06/07). */
+  var minNozzleX = Infinity, maxNozzleX = -Infinity;
+  noz.forEach(function (o) {
+    minNozzleX = Math.min(minNozzleX, o.userData.mCtr.x);
+    maxNozzleX = Math.max(maxNozzleX, o.userData.mCtr.x);
+  });
+  var sprayPlaneX = (minNozzleX + maxNozzleX) * 0.5;
+
   var per = 26, N = noz.length * per;
   var pos = new Float32Array(N * 3), seed = new Float32Array(N);
   var src = [];
   noz.forEach(function (o) {
     var c = o.userData.mCtr;
-    var dir = c.x >= GEO.sprayPlaneX ? -1 : 1;
+    var dir = c.x >= sprayPlaneX ? -1 : 1;
     src.push({ x: c.x + dir * o.userData.size.x * 0.42, y: c.y, z: c.z, dir: dir });
   });
   for (var i = 0; i < N; i++) seed[i] = Math.random();
