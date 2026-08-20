@@ -1,0 +1,876 @@
+---
+const slides = [
+  {
+    number: '01',
+    category: 'LIQUOR CONTROL',
+    title: "Meter, don't soak",
+    description:
+      'Only the chemistry required is metered onto the moving fabric. About 5 L stays in circulation instead of roughly 70 L standing in a conventional padder bath.',
+    stat: '5 L',
+    statLabel: 'IN CIRCULATION',
+    detail: 'vs. ~70 L standing in a padder bath',
+    image: '/assets/features/feature-01.png',
+    alt: 'Brochure comparison showing about 70 litres in a padder trough versus only 5 litres in RVR spray circulation.',
+  },
+  {
+    number: '02',
+    category: 'NON-CONTACT APPLICATION',
+    title: 'Non-contact spray',
+    description:
+      'Twenty-four digital nozzles apply chemistry directly to the running fabric without a nip or applicator touching the cloth.',
+    stat: '24',
+    statLabel: 'DIGITAL NOZZLES',
+    detail: '12 + 12 nozzles for A and B sides',
+    image: '/assets/features/feature-02.png',
+    alt: 'Brochure diagram comparing contact padder application with non-contact digital spray application.',
+  },
+  {
+    number: '03',
+    category: 'WIDTH UNIFORMITY',
+    title: '±2% across the full width',
+    description:
+      'Every nozzle is controlled independently so the finish stays uniform from centre to selvedge across the complete fabric width.',
+    stat: '±2%',
+    statLabel: 'FULL-WIDTH UNIFORMITY',
+    detail: 'Nozzle-by-nozzle control',
+    image: '/assets/features/feature-03.png',
+    alt: 'Brochure diagram showing heavy-edge padder variation versus flat nozzle-by-nozzle spray uniformity within plus or minus two percent.',
+  },
+  {
+    number: '04',
+    category: 'SELECTIVE FINISHING',
+    title: 'Spray only where needed',
+    description:
+      'The operator can select both faces, A only, B only, or a narrow set of nozzle zones so chemistry is not sprayed into empty space.',
+    stat: 'A · B',
+    statLabel: 'FACE + ZONE CONTROL',
+    detail: 'A + B · A only · B only · narrow zones',
+    image: '/assets/features/feature-04.png',
+    alt: 'Brochure diagram illustrating both-face, one-face and narrow-zone spray selection.',
+  },
+  {
+    number: '05',
+    category: 'CHANGEOVER',
+    title: '5-minute auto clean',
+    description:
+      'Eight automatic valves flush the nozzles, line and tank. The complete spray circuit is cleaned and ready for the next recipe in approximately five minutes.',
+    stat: '5 min',
+    statLabel: 'AUTO-CLEAN',
+    detail: '8-valve flush · nozzles · line · tank',
+    image: '/assets/features/feature-05.png',
+    alt: 'Brochure diagram showing manual padder cleaning versus an automatic five-minute spray-system flush.',
+  },
+  
+  {
+    number: '06',
+    category: 'LOT CONSISTENCY',
+    title: 'Same finish from first to last',
+    description:
+      'There is no bath dilution and no tailing. Fresh chemistry is dosed against fabric width, GSM and line speed so the last metre is finished like the first.',
+    stat: '0',
+    statLabel: 'TAILING',
+    detail: 'Fresh dosing by width · GSM · speed',
+    image: '/assets/features/feature-06.png',
+    alt: 'Brochure chart showing padder tailing versus a consistent spray finish from the start to the end of the lot.',
+  },
+];
+
+const trackSlides = [slides[slides.length - 1], ...slides, slides[0], slides[1]];
+---
+
+<section
+  class="sec feature-carousel-section"
+  id="feature-carousel"
+  data-feature-carousel
+  tabindex="0"
+  aria-label="RVR spray system feature carousel"
+>
+  <div class="feature-head rv">
+    <div>
+      <p class="eyebrow">
+        <svg class="wv" viewBox="0 0 40 16" width="18" height="8" aria-hidden="true">
+          <path d="M0 12 H6 V4 H14 V12 H20 V4 H28 V12 H34 V4 H40" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round" />
+        </svg>
+        Seven reasons to spray
+      </p>
+      <h3 class="disp">The finish you want.<br /><em>Only where you want it.</em></h3>
+    </div>
+
+    <p class="feature-intro">
+      Seven production advantages from the RVR Ramdukes spray system brochure,
+      presented as a continuous horizontal technical carousel.
+    </p>
+  </div>
+
+  <div class="feature-shell rv">
+    <div class="feature-viewport" data-feature-viewport>
+      <div class="feature-track" data-feature-track>
+        {trackSlides.map((slide, itemIndex) => (
+          <article
+            class="feature-card"
+            data-feature-card
+            data-slide-number={slide.number}
+            data-item-index={itemIndex}
+          >
+            <div class="feature-frame">
+              <div class="feature-image-wrap">
+                <img src={slide.image} alt={slide.alt} loading="lazy" decoding="async" />
+                <div class="feature-image-grid" aria-hidden="true"></div>
+                <span class="feature-number">{slide.number} / 06</span>
+                <span class="feature-category">{slide.category}</span>
+              </div>
+
+              <div class="feature-body">
+                <div class="feature-copy">
+                  <h4>{slide.title}</h4>
+                  <p>{slide.description}</p>
+                </div>
+
+                {slide.stats ? (
+                  <div class="feature-stat-grid" aria-label="Resource saving statistics">
+                    {slide.stats.map((item) => (
+                      <div class="feature-mini-stat">
+                        <strong>{item.value}</strong>
+                        <span>{item.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div class="feature-stat">
+                    <strong>{slide.stat}</strong>
+                    <span>{slide.statLabel}</span>
+                  </div>
+                )}
+
+                <div class="feature-detail">{slide.detail}</div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    <button
+      class="feature-arrow feature-prev"
+      type="button"
+      data-feature-prev
+      aria-label="Show previous spray-system feature"
+    >
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M21 5 10 16l11 11" />
+      </svg>
+    </button>
+
+    <button
+      class="feature-arrow feature-next"
+      type="button"
+      data-feature-next
+      aria-label="Show next spray-system feature"
+    >
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path d="m11 5 11 11-11 11" />
+      </svg>
+    </button>
+
+    <div class="feature-controls">
+      <div class="feature-progress" aria-live="polite">
+        <span class="feature-progress-current" data-feature-current>01</span>
+        <div class="feature-progress-rail" aria-hidden="true">
+          {slides.map((slide) => <i data-feature-dot data-number={slide.number}></i>)}
+        </div>
+        <span>06</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .feature-carousel-section {
+    --feature-gap: clamp(18px, 2.2vw, 34px);
+    --feature-radius: 22px;
+    overflow: hidden;
+    background:
+      radial-gradient(60% 90% at 88% 12%, rgba(220, 30, 107, 0.045), transparent 72%),
+      linear-gradient(180deg, #f7f9fb 0%, var(--paper, #eff2f6) 100%);
+  }
+
+  .feature-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: clamp(28px, 4vw, 52px);
+  }
+
+  .feature-head h3 {
+    margin: 6px 0 0;
+    font-family: "Big Shoulders Display", Impact, sans-serif;
+    font-weight: 800;
+    font-size: clamp(42px, 5.4vw, 74px);
+    line-height: 0.93;
+  }
+
+  .feature-head h3 em {
+    color: var(--chem, #dc1e6b);
+    font-style: normal;
+  }
+
+  .feature-intro {
+    max-width: 46ch;
+    margin: 0;
+    color: var(--mid, #525e6b);
+    font-size: 14.5px;
+  }
+
+  .feature-shell {
+    position: relative;
+  }
+
+  .feature-viewport {
+    width: 100%;
+    overflow: hidden;
+    padding: 9px 2px 18px;
+    touch-action: pan-y;
+  }
+
+  .feature-track {
+    display: flex;
+    gap: var(--feature-gap);
+    align-items: stretch;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    transition: transform 680ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  .feature-track.no-transition {
+    transition: none !important;
+  }
+
+  .feature-card {
+    flex: 0 0 calc((100% - var(--feature-gap)) / 2);
+    min-width: 0;
+    opacity: 0.68;
+  }
+
+  .feature-frame {
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid rgba(15, 21, 29, 0.105);
+    border-radius: var(--feature-radius);
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 16px 40px rgba(15, 21, 29, 0.065);
+    transform: translate3d(0, 10px, 0) scale(0.965);
+    transform-origin: 50% 50%;
+    transition:
+      transform 680ms cubic-bezier(0.22, 0.61, 0.36, 1),
+      opacity 680ms cubic-bezier(0.22, 0.61, 0.36, 1),
+      box-shadow 680ms cubic-bezier(0.22, 0.61, 0.36, 1),
+      border-color 680ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  .feature-card.is-primary {
+    opacity: 1;
+  }
+
+  .feature-card.is-primary .feature-frame {
+    transform: translate3d(0, 0, 0) scale(1);
+    border-color: rgba(220, 30, 107, 0.18);
+    box-shadow: 0 22px 52px rgba(15, 21, 29, 0.085);
+  }
+
+  .feature-card.is-secondary {
+    opacity: 0.88;
+  }
+
+  .feature-card.is-secondary .feature-frame {
+    transform: translate3d(0, 10px, 0) scale(0.975);
+  }
+
+  .feature-shell.is-moving .feature-card:not(.is-primary):not(.is-secondary) {
+    opacity: 0.4;
+  }
+
+  .feature-image-wrap {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #fff;
+    border-bottom: 1px solid rgba(15, 21, 29, 0.085);
+  }
+
+  .feature-image-wrap img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    transform: scale(1.002);
+    transition: transform 900ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  .feature-card.is-primary .feature-image-wrap img {
+    transform: scale(1.018);
+  }
+
+  .feature-image-grid {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.24;
+    background-image:
+      linear-gradient(to right, rgba(15, 21, 29, 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(15, 21, 29, 0.045) 1px, transparent 1px);
+    background-size: 38px 38px;
+    -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,.45), transparent 72%);
+    mask-image: linear-gradient(180deg, rgba(0,0,0,.45), transparent 72%);
+  }
+
+  .feature-number,
+  .feature-category {
+    position: absolute;
+    top: 16px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: 0 10px;
+    border: 1px solid rgba(15, 21, 29, 0.12);
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(10px);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 9px;
+    line-height: 1;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .feature-number {
+    left: 16px;
+    color: var(--chem, #dc1e6b);
+  }
+
+  .feature-category {
+    right: 16px;
+    color: var(--dim, #87939f);
+  }
+
+  .feature-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "copy stat"
+      "detail detail";
+    gap: 18px 24px;
+    padding: clamp(20px, 2.5vw, 30px);
+  }
+
+  .feature-copy {
+    grid-area: copy;
+    min-width: 0;
+  }
+
+  .feature-copy h4 {
+    margin: 0;
+    color: var(--ink, #0f151d);
+    font-family: "Big Shoulders Display", Impact, sans-serif;
+    font-size: clamp(29px, 2.7vw, 42px);
+    font-weight: 800;
+    line-height: 0.98;
+  }
+
+  .feature-copy p {
+    max-width: 58ch;
+    margin: 12px 0 0;
+    color: var(--mid, #525e6b);
+    font-size: 13.5px;
+    line-height: 1.62;
+  }
+
+  .feature-stat {
+    grid-area: stat;
+    min-width: 116px;
+    padding-left: 20px;
+    border-left: 1px solid rgba(15, 21, 29, 0.11);
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .feature-stat strong {
+    color: var(--chem, #dc1e6b);
+    font-family: "Big Shoulders Display", Impact, sans-serif;
+    font-size: clamp(42px, 4.2vw, 64px);
+    font-weight: 800;
+    line-height: 0.88;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .feature-stat span {
+    margin-top: 8px;
+    color: var(--dim, #87939f);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 8.5px;
+    line-height: 1.35;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .feature-stat-grid {
+    grid-area: stat;
+    min-width: 190px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    align-self: center;
+  }
+
+  .feature-mini-stat {
+    padding: 10px 8px;
+    border-left: 1px solid rgba(15, 21, 29, 0.1);
+  }
+
+  .feature-mini-stat strong {
+    display: block;
+    color: var(--chem, #dc1e6b);
+    font-family: "Big Shoulders Display", Impact, sans-serif;
+    font-size: clamp(27px, 2.3vw, 38px);
+    font-weight: 800;
+    line-height: 0.9;
+  }
+
+  .feature-mini-stat span {
+    display: block;
+    margin-top: 7px;
+    color: var(--dim, #87939f);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 7px;
+    line-height: 1.3;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .feature-card.is-primary .feature-stat strong,
+  .feature-card.is-primary .feature-mini-stat strong {
+    animation: feature-stat-rise 560ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  @keyframes feature-stat-rise {
+    from { transform: translateY(8px); opacity: 0.35; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .feature-detail {
+    grid-area: detail;
+    padding-top: 13px;
+    border-top: 1px solid rgba(15, 21, 29, 0.095);
+    color: var(--air, #0c8ca0);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 9px;
+    line-height: 1.5;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ------------------------------------------------------------
+     CAROUSEL NAVIGATION
+     Arrows sit directly on the image row.
+     Icon only: no background, no border, no circle.
+     ------------------------------------------------------------ */
+  .feature-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 18px;
+  }
+
+  .feature-arrow {
+    position: absolute;
+    z-index: 12;
+    top: clamp(145px, 14vw, 255px);
+    width: clamp(52px, 4vw, 72px);
+    height: clamp(72px, 6vw, 104px);
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 0 !important;
+    border-radius: 0 !important;
+    outline: 0;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: #0f151d;
+    cursor: pointer;
+    transform: translateY(-50%);
+    transition:
+      color 180ms ease,
+      transform 220ms cubic-bezier(0.22, 0.61, 0.36, 1),
+      opacity 180ms ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .feature-prev {
+    left: clamp(2px, .7vw, 14px);
+  }
+
+  .feature-next {
+    right: clamp(2px, .7vw, 14px);
+  }
+
+  .feature-arrow svg {
+    width: clamp(42px, 3.5vw, 62px);
+    height: clamp(42px, 3.5vw, 62px);
+    overflow: visible;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
+    filter:
+      drop-shadow(0 1px 0 rgba(255, 255, 255, 0.92))
+      drop-shadow(0 0 5px rgba(255, 255, 255, 0.72));
+  }
+
+  .feature-arrow:hover {
+    color: #000;
+  }
+
+  .feature-prev:hover {
+    transform: translateY(-50%) translateX(-5px) scale(1.06);
+  }
+
+  .feature-next:hover {
+    transform: translateY(-50%) translateX(5px) scale(1.06);
+  }
+
+  .feature-arrow:active {
+    opacity: 0.58;
+  }
+
+  .feature-arrow:focus-visible {
+    color: #000;
+    outline: 2px solid var(--chem, #dc1e6b);
+    outline-offset: 4px;
+  }
+
+  .feature-arrow:disabled {
+    cursor: default;
+    opacity: 0.35;
+  }
+
+  .feature-progress {
+    display: grid;
+    grid-template-columns: 28px 1fr 28px;
+    align-items: center;
+    gap: 12px;
+    color: var(--dim, #87939f);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+  }
+
+  .feature-progress-current {
+    color: var(--chem, #dc1e6b);
+    font-weight: 600;
+  }
+
+  .feature-progress-rail {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 4px;
+  }
+
+  .feature-progress-rail i {
+    height: 2px;
+    display: block;
+    background: rgba(15, 21, 29, 0.14);
+    transition: background 260ms ease, transform 260ms ease;
+  }
+
+  .feature-progress-rail i.is-active {
+    background: var(--chem, #dc1e6b);
+    transform: scaleY(2);
+  }
+
+  @media (max-width: 1040px) {
+    .feature-head {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .feature-intro {
+      max-width: 62ch;
+    }
+
+    .feature-body {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "copy"
+        "stat"
+        "detail";
+    }
+
+    .feature-stat {
+      min-width: 0;
+      padding: 0;
+      border-left: 0;
+      flex-direction: row;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .feature-stat-grid {
+      min-width: 0;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .feature-carousel-section {
+      --feature-gap: 16px;
+      --feature-radius: 18px;
+    }
+
+    .feature-card {
+      flex-basis: 100%;
+    }
+
+    .feature-frame,
+    .feature-card.is-secondary .feature-frame,
+    .feature-card.is-primary .feature-frame {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    .feature-card,
+    .feature-card.is-secondary,
+    .feature-card.is-primary {
+      opacity: 1;
+    }
+
+    .feature-image-wrap {
+      aspect-ratio: 16 / 10;
+    }
+
+    .feature-number,
+    .feature-category {
+      top: 12px;
+      min-height: 26px;
+      font-size: 8px;
+    }
+
+    .feature-number { left: 12px; }
+    .feature-category { right: 12px; }
+
+    .feature-body {
+      padding: 20px;
+      gap: 15px;
+    }
+
+    .feature-copy h4 {
+      font-size: clamp(30px, 9vw, 42px);
+    }
+
+    .feature-stat-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .feature-controls {
+      margin-top: 16px;
+    }
+
+    .feature-arrow {
+      top: clamp(110px, 24vw, 185px);
+      width: 52px;
+      height: 76px;
+    }
+
+    .feature-prev { left: 4px; }
+    .feature-next { right: 4px; }
+
+    .feature-arrow svg {
+      width: 44px;
+      height: 44px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .feature-head h3 {
+      font-size: clamp(40px, 13vw, 54px);
+    }
+
+    .feature-image-wrap {
+      aspect-ratio: 4 / 3;
+    }
+
+    .feature-category {
+      max-width: 55%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .feature-stat-grid {
+      gap: 4px;
+    }
+
+    .feature-mini-stat {
+      padding-inline: 5px;
+    }
+
+    .feature-mini-stat strong {
+      font-size: 28px;
+    }
+
+    .feature-controls {
+      margin-top: 14px;
+    }
+
+    .feature-arrow {
+      top: clamp(105px, 36vw, 155px);
+      width: 46px;
+      height: 68px;
+    }
+
+    .feature-prev { left: 1px; }
+    .feature-next { right: 1px; }
+
+    .feature-arrow svg {
+      width: 38px;
+      height: 38px;
+      stroke-width: 1.8;
+    }
+
+    .feature-progress {
+      gap: 8px;
+      grid-template-columns: 24px 1fr 24px;
+      font-size: 9px;
+    }
+  }
+
+
+  @media (hover: none) and (pointer: coarse) {
+    .feature-arrow {
+      opacity: 0.92;
+    }
+
+    .feature-arrow:hover {
+      color: #0f151d;
+    }
+
+    .feature-prev:hover,
+    .feature-next:hover {
+      transform: translateY(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .feature-track,
+    .feature-frame,
+    .feature-image-wrap img,
+    .feature-progress-rail i,
+    .feature-arrow {
+      transition-duration: 1ms !important;
+      animation-duration: 1ms !important;
+    }
+  }
+
+  
+.feature-shell {
+  position: relative;
+}
+
+.feature-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 18px;
+}
+.feature-arrow {
+  position: absolute;
+  z-index: 12;
+  margin-top: 80px;
+  top: clamp(145px, 14vw, 255px);
+
+  width: clamp(70px, 5vw, 90px);
+  height: clamp(100px, 8vw, 140px);
+
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0 !important;
+  border-radius: 0 !important;
+  outline: 0;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #d1d1d3;
+  cursor: pointer;
+
+  transform: translateY(-50%);
+
+  transition:
+    color 180ms ease,
+    transform 220ms cubic-bezier(0.22, 0.61, 0.36, 1),
+    opacity 180ms ease;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+.feature-prev {
+  left: -70px;
+}
+
+.feature-next {
+  right: -65px;
+}
+
+.feature-arrow svg {
+  
+  width: 70px;
+  height: 70px;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+  filter:
+    drop-shadow(0 1px 0 rgba(255,255,255,.92))
+    drop-shadow(0 0 5px rgba(255,255,255,.72));
+}
+
+.feature-arrow:hover { color: #919191; }
+.feature-prev:hover { transform: translateY(-50%) translateX(-5px) scale(1.06); }
+.feature-next:hover { transform: translateY(-50%) translateX(5px) scale(1.06); }
+.feature-arrow:active { opacity: .58; }
+.feature-arrow:disabled { cursor: default; opacity: .35; }
+
+@media (max-width: 760px) {
+  .feature-arrow {
+    top: clamp(110px, 24vw, 185px);
+    width: 52px;
+    height: 76px;
+  }
+  .feature-prev { left: 4px; }
+  .feature-next { right: 4px; }
+  .feature-arrow svg { width: 44px; height: 44px; }
+}
+
+@media (max-width: 480px) {
+  .feature-arrow {
+    top: clamp(105px, 36vw, 155px);
+    width: 46px;
+    height: 68px;
+  }
+  .feature-prev { left: 1px; }
+  .feature-next { right: 1px; }
+  .feature-arrow svg {
+    width: 38px;
+    height: 38px;
+    stroke-width: 1.8;
+  }
+}
+
+</style>
+

@@ -1962,3 +1962,131 @@ resize();
 })();
 
 
+//feature-section
+function initFeatureCarousel() {
+    const root = document.querySelector('[data-feature-carousel]');
+    if (!(root instanceof HTMLElement) || root.dataset.ready === 'true') return;
+    root.dataset.ready = 'true';
+
+    const shell = root.querySelector('.feature-shell');
+    const viewport = root.querySelector('[data-feature-viewport]');
+    const track = root.querySelector('[data-feature-track]');
+    const cards = Array.from(root.querySelectorAll('[data-feature-card]'));
+    const prev = root.querySelector('[data-feature-prev]');
+    const next = root.querySelector('[data-feature-next]');
+    const currentLabel = root.querySelector('[data-feature-current]');
+    const dots = Array.from(root.querySelectorAll('[data-feature-dot]'));
+
+    if (!(shell instanceof HTMLElement) || !(viewport instanceof HTMLElement) || !(track instanceof HTMLElement)) return;
+    if (!(prev instanceof HTMLButtonElement) || !(next instanceof HTMLButtonElement) || !(currentLabel instanceof HTMLElement)) return;
+
+    const realCount = 7;
+    let position = 1;
+    let locked = false;
+    let step = 0;
+    let settleTimer = 0;
+
+    function logicalIndex(pos) {
+      return ((pos - 1) % realCount + realCount) % realCount;
+    }
+
+    function measure() {
+      const card = cards[0];
+      if (!(card instanceof HTMLElement)) return;
+      const styles = getComputedStyle(track);
+      const gap = parseFloat(styles.columnGap || styles.gap || '0') || 0;
+      step = card.getBoundingClientRect().width + gap;
+      setPosition(position, false);
+    }
+
+    function setActiveClasses(pos) {
+      cards.forEach((card, index) => {
+        card.classList.toggle('is-primary', index === pos);
+        card.classList.toggle('is-secondary', index === pos + 1 && innerWidth > 760);
+        const visible = innerWidth <= 760 ? index === pos : (index === pos || index === pos + 1);
+        card.setAttribute('aria-hidden', visible ? 'false' : 'true');
+      });
+
+      const active = logicalIndex(pos);
+      currentLabel.textContent = String(active + 1).padStart(2, '0');
+      dots.forEach((dot, index) => dot.classList.toggle('is-active', index === active));
+    }
+
+    function setPosition(pos, animate) {
+      if (!step) return;
+      track.classList.toggle('no-transition', !animate);
+      track.style.transform = `translate3d(${-pos * step}px, 0, 0)`;
+      if (!animate) {
+        track.getBoundingClientRect();
+        track.classList.remove('no-transition');
+      }
+    }
+
+    function lock(value) {
+      locked = value;
+      prev.disabled = value;
+      next.disabled = value;
+      shell.classList.toggle('is-moving', value);
+    }
+
+    function settle(direction) {
+      if (direction > 0 && position === 8) {
+        position = 1;
+        setActiveClasses(position);
+        setPosition(position, false);
+      } else if (direction < 0 && position === 0) {
+        position = 7;
+        setActiveClasses(position);
+        setPosition(position, false);
+      }
+      lock(false);
+    }
+
+    function move(direction) {
+      if (locked) return;
+      lock(true);
+      position += direction;
+      setActiveClasses(position);
+      setPosition(position, true);
+
+      window.clearTimeout(settleTimer);
+      settleTimer = window.setTimeout(() => settle(direction), 720);
+    }
+
+    track.addEventListener('transitionend', (event) => {
+      if (event.target !== track || event.propertyName !== 'transform' || !locked) return;
+      window.clearTimeout(settleTimer);
+      settle(position === 8 ? 1 : position === 0 ? -1 : 0);
+    });
+
+    next.addEventListener('click', () => move(1));
+    prev.addEventListener('click', () => move(-1));
+
+    root.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        move(1);
+      } else if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        move(-1);
+      }
+    });
+
+    let resizeTimer = 0;
+    window.addEventListener('resize', () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => {
+        setActiveClasses(position);
+        measure();
+      }, 80);
+    });
+
+    setActiveClasses(position);
+    requestAnimationFrame(measure);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFeatureCarousel, { once: true });
+  } else {
+    initFeatureCarousel();
+  }
